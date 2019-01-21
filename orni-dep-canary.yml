@@ -17,7 +17,7 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: demoapp-canary
+  name: demoapp-BUILD_NUMBER
 spec:
   replicas: 1
   template:
