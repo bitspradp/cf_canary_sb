@@ -24,13 +24,13 @@ steps:
     image: codefresh/k8s-kubectl
     commands:
       - sed -i -- "s/BUILD_NUMBER/${{CF_SHORT_REVISION}}/g" orni-dep-canary.yml
-      - kubectl config use-context gke_saas-cloud-prototype_us-central1-a_stage-cluster
+      - kubectl config use-context stage-cluster@SaaS Cloud Prototype
       - kubectl apply -f orni-dep-canary.yml -n otom8
   testCanary:
     title: testCanary
     image: codefresh/k8s-kubectl
     commands:
-      - kubectl config use-context gke_saas-cloud-prototype_us-central1-a_stage-cluster
+      - kubectl config use-context stage-cluster@SaaS Cloud Prototype
       - kubectl run e2e --image=otomato/ornitest:${{CF_SHORT_REVISION}} --attach=true --restart=Never --rm=true -n=otom8 --  "/tests/it/canarytest.sh"
       - cf_export CANARY_EXIT_FLAG=$?
     fail-fast: false
@@ -48,7 +48,7 @@ steps:
     title: verifyCanaryInProd
     image: codefresh/k8s-kubectl
     commands:
-     - kubectl config use-context gke_saas-cloud-prototype_us-central1-a_stage-cluster
+     - kubectl config use-context stage-cluster@SaaS Cloud Prototype
      - export PODNAME=`kubectl get pods -n otom8 | grep canary | cut -d ' '  -f 1`
      - kubectl label pod $PODNAME app=ornithology production=ready -n otom8
      - kubectl run verify --image=otomato/ornitest:${{CF_SHORT_REVISION}} --attach=true --restart=Never --rm=true -n=otom8 --  "/tests/it/version_verify.sh"
