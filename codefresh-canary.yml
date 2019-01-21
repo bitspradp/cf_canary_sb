@@ -25,7 +25,7 @@ steps:
     commands:
       - sed -i -- "s/BUILD_NUMBER/${{CF_SHORT_REVISION}}/g" orni-dep-canary.yml
       - kubectl config get-contexts
-      - kubectl config use-context gke_saas-cloud-prototype_us-central1-a_stage-cluster
+      - kubectl config use-context stage-cluster@SaaS Cloud Prototype
       - kubectl apply -f orni-dep-canary.yml -n otom8
   testCanary:
     title: testCanary
