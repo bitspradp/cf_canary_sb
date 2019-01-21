@@ -6,4 +6,4 @@ steps:
     commands:
       - sed -i -- "s/BUILD_NUMBER/${{CF_SHORT_REVISION}}/g" orni-dep.yml
       - kubectl config use-context stage-cluster@SaaS\ Cloud\ Prototype
-      - kubectl apply -f orni-dep.yml -n otom8
+      - kubectl apply -f orni-dep.yml -n default
