@@ -13,7 +13,7 @@ steps:
     type: build
     description: Builds image with tests
     dockerfile: Dockerfile.test
-    image_name: otomato/ornitest
+    image_name: bitspradp/test
     tag: ${{CF_SHORT_REVISION}}
   pushTestImage:
     type: push
