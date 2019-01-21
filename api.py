@@ -1,7 +1,10 @@
 import time
+import socket
 from eve import Eve
-from eve_swagger import swagger, add_documentation
+from version import *
+from flask import Flask
 from flask_prometheus import monitor
+from eve_swagger import swagger, add_documentation
 
 app = Eve()
 app.register_blueprint(swagger)
@@ -9,7 +12,7 @@ app.register_blueprint(swagger)
 # required. See http://swagger.io/specification/#infoObject for details.
 app.config['SWAGGER_INFO'] = {
     'title': 'Otomato Ornithology API',
-    'version': '1.6',
+    'version': version,
     'description': 'store and retrieve birf species',
     'termsOfService': 'my terms of service',
     'contact': {
@@ -39,6 +42,15 @@ def ping():
         ping.latency -= 1
     return 'Pong ' + str(ping.latency)
 
+@app.route("/")
+def index():
+    try:
+        host_name = socket.gethostname()
+        host_ip = socket.gethostbyname(host_name)
+        return "HOST_NAME: "+host_name+" IP_ADDRESS: "+host_ip+" DEPLOYMENT_VERSION: "+version+"\n"
+    except:
+        return "Unable to serve requests presently\n"
+
 if __name__ == '__main__':
 	monitor(app, port=8000)
-	app.run(host='0.0.0.0')
+	app.run(host='0.0.0.0', port=8080)
