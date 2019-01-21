@@ -13,14 +13,14 @@ spec:
   selector:
     type: canary
   sessionAffinity: None
-  type: NodePort
+  type: LoadBalancer
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: demoapp-BUILD_NUMBER
 spec:
-  replicas: 1
+  replicas: 10
   template:
     metadata:
       labels:
