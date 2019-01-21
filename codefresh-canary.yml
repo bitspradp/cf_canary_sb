@@ -51,7 +51,7 @@ steps:
     commands:
      - kubectl config use-context stage-cluster@SaaS\ Cloud\ Prototype
      - export PODNAME=`kubectl get pods -n default | grep canary | cut -d ' '  -f 1`
-     - kubectl label pod $PODNAME app=demoapp production=ready -n default
+     - kubectl label pod $PODNAME app=demoapp production=ready -n default --overwrite=true
      - kubectl run verify --image=bitspradp/test:${{CF_SHORT_REVISION}} --attach=true --restart=Never --rm=true -n=default --  "/tests/it/version_verify.sh"
      - cf_export CANARY_EXIT_FLAG=$?
   rollbackCanary2:
