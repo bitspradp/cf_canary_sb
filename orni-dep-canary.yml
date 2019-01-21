@@ -3,6 +3,7 @@ kind: Service
 metadata:
   labels:
     type: canary
+    version: BUILD_NUMBER
   name: demoapp-canary
 spec:
   ports:
