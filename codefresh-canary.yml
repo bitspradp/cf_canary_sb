@@ -67,4 +67,4 @@ steps:
   triggerProdDeployment:
     image: codefresh/cli:latest
     commands:
-      - codefresh run 5a5e15cc8aced0000153ba08 -b master -detach
+      - codefresh run 5c459b454993156790bc6900 -b master -detach
