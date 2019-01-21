@@ -27,11 +27,11 @@ app.config['SWAGGER_INFO'] = {
 
 @app.route('/healthz')
 def healthz():
-    return 'Healthy'
+    return 'Healthy\n'
 
 @app.route('/version')
 def version():
-    return app.config['SWAGGER_INFO']['version']
+    return app.config['SWAGGER_INFO']['version']+"\n"
 
 @app.route('/ping')
 def ping():
@@ -40,10 +40,10 @@ def ping():
     time.sleep(ping.latency)
     if ping.latency > 0:
         ping.latency -= 1
-    return 'Pong ' + str(ping.latency)
+    return 'Pong ' + str(ping.latency)+"\n"
 
-@app.route("/")
-def index():
+@app.route("/disp")
+def disp():
     try:
         host_name = socket.gethostname()
         host_ip = socket.gethostbyname(host_name)
