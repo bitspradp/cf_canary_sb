@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ornithology
+  name: demoapp
   labels:
-    app: ornithology
+    app: demoapp
     production: ready
 spec:
   ports:
@@ -11,7 +11,7 @@ spec:
       protocol: TCP
       targetPort: 5000
   selector:
-      app: ornithology
+      app: demoapp
       production: ready
   type: LoadBalancer
   loadBalancerSourceRanges:
@@ -20,17 +20,17 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: ornithology
+  name: demoapp
 spec:
   replicas: 9
   template:
     metadata:
       labels:
-        app: ornithology
+        app: demoapp
         production: ready
     spec:
       containers:
-      - name: ornithology
+      - name: demoapp
         image: bitspradp/cd_demo_spin:BUILD_NUMBER
         ports:
         - containerPort: 5000
