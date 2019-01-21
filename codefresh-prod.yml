@@ -5,5 +5,5 @@ steps:
     image: codefresh/k8s-kubectl
     commands:
       - sed -i -- "s/BUILD_NUMBER/${{CF_SHORT_REVISION}}/g" orni-dep.yml
-      - kubectl config use-context cf-staging@codefresh-staging
+      - kubectl config use-context stage-cluster@SaaS\ Cloud\ Prototype
       - kubectl apply -f orni-dep.yml -n otom8
