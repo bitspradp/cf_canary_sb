@@ -3,7 +3,7 @@ steps:
   buildAppImage:
     type: build
     description: Builds my service
-    image_name: otomato/ornithology
+    image_name: bitspradp/cd_demo_spin
     tag: ${{CF_SHORT_REVISION}}
   pushAppImage:
     type: push
