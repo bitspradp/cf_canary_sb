@@ -1,5 +1,5 @@
 #! /bin/sh -x
-export APP_URL=ornithology-canary
+export APP_URL=demoapp-canary
 #allow service to come up
 sleep 5
 i=10
